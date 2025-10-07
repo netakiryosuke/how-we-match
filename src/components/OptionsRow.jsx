@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import CircleOption from "./CircleOption/CircleOption";
 
@@ -17,6 +17,7 @@ export default function OptionsRow() {
 
     return (
         <Box sx={{display: "flex", gap: 5, justifyContent: "center", alignItems: "center"}}>
+            <Typography variant="h6" color="#33a474">そう思う</Typography>
             {circleConfigs.map((config, index) => (
                 <CircleOption
                     key={index}
@@ -26,6 +27,7 @@ export default function OptionsRow() {
                     onClick={() => setSelectedIndex(index)}
                 />
             ))}
+            <Typography variant="h6" color="#88619a">そう思わない</Typography>
         </Box>
     );
 }
