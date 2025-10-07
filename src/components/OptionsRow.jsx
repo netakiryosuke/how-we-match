@@ -1,9 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import { useState } from "react";
 import CircleOption from "./CircleOption/CircleOption";
 
-export default function OptionsRow() {
-    const [selectedIndex, setSelectedIndex] = useState(null);
+export default function OptionsRow({selectedIndex, onSelect}) {
 
     const circleConfigs = [
         {size: 70, color: "#33a474"},
@@ -24,7 +22,7 @@ export default function OptionsRow() {
                     size={config.size}
                     color={config.color}
                     selected={selectedIndex === index}
-                    onClick={() => setSelectedIndex(index)}
+                    onClick={() => onSelect(index)}
                 />
             ))}
             <Typography variant="h6" color="#88619a">そう思わない</Typography>
