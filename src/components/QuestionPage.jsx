@@ -1,5 +1,6 @@
 import { Box, Button } from "@mui/material";
 import Question from "./Question";
+import Result from "./Result";
 import { useState } from "react";
 import calculateScore from "../scoreCalculator";
 
@@ -21,12 +22,12 @@ export default function QuestionPage() {
         "14",
         "15"
     ];
-    
 
     const [answers, setAnswers] = useState(Array(questions.length).fill(null));
     const [currentPage, setCurrentPage] = useState(0);
+    const [isShowResult, setIsShowResult] = useState(false);
 
-    const displayingQuestions = questions.slice(0 + (currentPage*5), 5 + (currentPage*5));
+    const displayingQuestions = questions.slice(0 + (currentPage * 5), 5 + (currentPage * 5));
 
     const handleSelect = (answer, questionIndex) => {
         const newAnswers = [...answers];
@@ -40,21 +41,30 @@ export default function QuestionPage() {
 
     const handleCalculateClick = () => {
         const score = calculateScore(answers);
-        alert(`あなたのスコアは ${score} です`);
+        setIsShowResult(true);
     }
 
     return (
         <Box>
-            <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 6}}>
-                {displayingQuestions.map((question, index) => {
-                    const actualIndex = index + (currentPage * 5);
-                    return (
-                        <Question key={index} question={question} selectedIndex={answers[actualIndex]} onSelect={(answer) => handleSelect(answer, actualIndex)} />
-                    )
-                })}
-            </Box>
-            <Button onClick={handleNextClick}>次へ→</Button>
-            <Button onClick={handleCalculateClick}>計算</Button>
+            {isShowResult ? (
+                <Result score={calculateScore(answers)} />
+            ) : (
+                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+                    {displayingQuestions.map((question, index) => {
+                        const actualIndex = index + currentPage * 5;
+                        return (
+                            <Question
+                                key={index}
+                                question={question}
+                                selectedIndex={answers[actualIndex]}
+                                onSelect={(answer) => handleSelect(answer, actualIndex)}
+                            />
+                        );
+                    })}
+                    <Button onClick={handleNextClick}>次へ→</Button>
+                    <Button onClick={handleCalculateClick}>計算</Button>
+                </Box>
+            )}
         </Box>
-    )
+    );
 }
