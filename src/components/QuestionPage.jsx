@@ -1,6 +1,7 @@
 import { Box, Button } from "@mui/material";
 import Question from "./Question";
 import { useState } from "react";
+import calculateScore from "../scoreCalculator";
 
 export default function QuestionPage() {
     const questions = [
@@ -37,15 +38,23 @@ export default function QuestionPage() {
         setCurrentPage(currentPage + 1);
     }
 
+    const handleCalculateClick = () => {
+        const score = calculateScore(answers);
+        alert(`あなたのスコアは ${score} です`);
+    }
+
     return (
         <Box>
             <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 6}}>
-                {displayingQuestions.map((question, index) => (
-                    <Question key={index} question={question} selectedIndex={answers[index]} onSelect={(answer) => handleSelect(answer, index)} />
-                ))}
+                {displayingQuestions.map((question, index) => {
+                    const actualIndex = index + (currentPage * 5);
+                    return (
+                        <Question key={index} question={question} selectedIndex={answers[actualIndex]} onSelect={(answer) => handleSelect(answer, actualIndex)} />
+                    )
+                })}
             </Box>
             <Button onClick={handleNextClick}>次へ→</Button>
+            <Button onClick={handleCalculateClick}>計算</Button>
         </Box>
-        
     )
 }
