@@ -1,10 +1,10 @@
 import './App.css';
-import OptionsRow from './components/OptionsRow';
+import Question from './components/Question';
 
 function App() {
   return (
     <div className="App">
-      <OptionsRow />
+      <Question />
     </div>
   );
 }
