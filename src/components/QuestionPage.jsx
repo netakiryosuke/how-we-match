@@ -67,7 +67,7 @@ export default function QuestionPage() {
     }
 
     return (
-        <Box>
+        <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", mt: 10, mb: 5}}>
             <ProgressHeader
                 isPage1={currentPage === 0}
                 answeredQuestion={answers.filter((answer) => answer !== null).length}
