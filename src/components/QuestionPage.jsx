@@ -8,7 +8,6 @@ import ProgressHeader from "./ProgressHeader";
 import questions from "../questions";
 
 export default function QuestionPage() {
-
     const [answers, setAnswers] = useState(Array(questions.length).fill(null));
     const [currentPage, setCurrentPage] = useState(0);
     const [isShowResult, setIsShowResult] = useState(false);
