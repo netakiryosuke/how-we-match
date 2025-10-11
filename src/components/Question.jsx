@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import OptionsRow from "./OptionsRow";
 
-export default function Question({ question, selectedIndex, onSelect }) {
+export default function Question({ refs, question, dimmed, selectedIndex, onSelect }) {
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "start", gap: 4 }}>
+        <Box ref={refs} sx={{ display: "flex", flexDirection: "column", alignItems: "start", gap: 4, opacity: dimmed ? 0.3 : 1 }}>
             <Typography variant="h4">
                 {question}
             </Typography>
