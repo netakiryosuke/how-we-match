@@ -40,7 +40,7 @@ export default function QuestionPage() {
         setAnswers(newAnswers);
 
         const indexInPage = questionIndex - currentPage * 5;
-        if (indexInPage > lastAnsweredIndex) {
+        if (indexInPage > lastAnsweredIndex && indexInPage < 4) {
             setLastAnsweredIndex(indexInPage);
 
             // 少し下にスクロール（次の質問が見えるように）
