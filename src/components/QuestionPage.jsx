@@ -3,6 +3,7 @@ import Question from "./Question";
 import Result from "./Result";
 import { useState } from "react";
 import calculateScore from "../scoreCalculator";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function QuestionPage() {
     const questions = [
@@ -36,26 +37,34 @@ export default function QuestionPage() {
     }
 
     return (
-        <Box>
-            {isShowResult ? (
-                <Result score={calculateScore(answers)} />
-            ) : (
-                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-                    {displayingQuestions.map((question, index) => {
-                        const actualIndex = index + currentPage * 5;
-                        return (
-                            <Question
-                                key={index}
-                                question={question}
-                                selectedIndex={answers[actualIndex]}
-                                onSelect={(answer) => handleSelect(answer, actualIndex)}
-                            />
-                        );
-                    })}
-                    <Button onClick={() => setCurrentPage(currentPage + 1)}>次へ→</Button>
-                    <Button onClick={() => setIsShowResult(true)}>計算</Button>
-                </Box>
-            )}
-        </Box>
+        <AnimatePresence mode="wait">
+            <motion.div
+                key={currentPage}
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                {isShowResult ? (
+                    <Result score={calculateScore(answers)} />
+                ) : (
+                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+                        {displayingQuestions.map((question, index) => {
+                            const actualIndex = index + currentPage * 5;
+                            return (
+                                <Question
+                                    key={index}
+                                    question={question}
+                                    selectedIndex={answers[actualIndex]}
+                                    onSelect={(answer) => handleSelect(answer, actualIndex)}
+                                />
+                            );
+                        })}
+                        <Button onClick={() => setCurrentPage(currentPage + 1)}>次へ→</Button>
+                        <Button onClick={() => setIsShowResult(true)}>計算</Button>
+                    </Box>
+                )}
+            </motion.div>
+        </AnimatePresence>
     );
 }
