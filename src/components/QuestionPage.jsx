@@ -68,7 +68,10 @@ export default function QuestionPage() {
 
     return (
         <Box>
-            <ProgressHeader currentPage={currentPage} totalPages={3} />
+            <ProgressHeader
+                answeredQuestion={answers.filter((answer) => answer !== null).length}
+                totalQuestions={15}
+            />
             <AnimatePresence mode="wait">
                 <motion.div
                     key={currentPage}
