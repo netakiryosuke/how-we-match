@@ -35,15 +35,6 @@ export default function QuestionPage() {
         setAnswers(newAnswers);
     }
 
-    const handleNextClick = () => {
-        setCurrentPage(currentPage + 1);
-    }
-
-    const handleCalculateClick = () => {
-        const score = calculateScore(answers);
-        setIsShowResult(true);
-    }
-
     return (
         <Box>
             {isShowResult ? (
@@ -61,8 +52,8 @@ export default function QuestionPage() {
                             />
                         );
                     })}
-                    <Button onClick={handleNextClick}>次へ→</Button>
-                    <Button onClick={handleCalculateClick}>計算</Button>
+                    <Button onClick={() => setCurrentPage(currentPage + 1)}>次へ→</Button>
+                    <Button onClick={() => setIsShowResult(true)}>計算</Button>
                 </Box>
             )}
         </Box>
