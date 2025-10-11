@@ -36,6 +36,18 @@ export default function QuestionPage() {
         setAnswers(newAnswers);
     }
 
+    const handleNextClick = () => {
+        // 今表示されている質問が全て回答されているか確認
+        const isAllAnswered = displayingQuestions.every((_, index) => answers[index + (currentPage * 5)] !== null);
+
+        if (!isAllAnswered) {
+            alert("全ての質問に回答してください");
+            return;
+        }
+        
+        setCurrentPage(currentPage + 1);
+    }
+
     return (
         <AnimatePresence mode="wait">
             <motion.div
@@ -50,6 +62,7 @@ export default function QuestionPage() {
                 ) : (
                     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
                         {displayingQuestions.map((question, index) => {
+                            // 全部の質問に対するインデックス
                             const actualIndex = index + currentPage * 5;
                             return (
                                 <Question
@@ -60,7 +73,7 @@ export default function QuestionPage() {
                                 />
                             );
                         })}
-                        <Button onClick={() => setCurrentPage(currentPage + 1)}>次へ→</Button>
+                        <Button onClick={handleNextClick}>次へ→</Button>
                         <Button onClick={() => setIsShowResult(true)}>計算</Button>
                     </Box>
                 )}
