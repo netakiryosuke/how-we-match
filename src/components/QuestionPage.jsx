@@ -5,25 +5,9 @@ import { useRef, useState } from "react";
 import calculateScore from "../scoreCalculator";
 import { motion, AnimatePresence } from "framer-motion";
 import ProgressHeader from "./ProgressHeader";
+import questions from "../questions";
 
 export default function QuestionPage() {
-    const questions = [
-        "あなたは自分の意見をはっきり言う方だと思いますか？",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15"
-    ];
 
     const [answers, setAnswers] = useState(Array(questions.length).fill(null));
     const [currentPage, setCurrentPage] = useState(0);
@@ -71,7 +55,7 @@ export default function QuestionPage() {
             <ProgressHeader
                 isPage1={currentPage === 0}
                 answeredQuestion={answers.filter((answer) => answer !== null).length}
-                totalQuestions={15}
+                totalQuestions={questions.length}
             />
             <AnimatePresence mode="wait">
                 <motion.div
