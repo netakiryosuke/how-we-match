@@ -34,12 +34,12 @@ export default function QuestionPage() {
 
     const displayingQuestions = questions.slice(0 + (currentPage * 5), 5 + (currentPage * 5));
 
-    const handleSelect = (answer, questionIndex) => {
+    const handleSelect = (answer, actualIndex) => {
         const newAnswers = [...answers];
-        newAnswers[questionIndex] = answer;
+        newAnswers[actualIndex] = answer;
         setAnswers(newAnswers);
 
-        const indexInPage = questionIndex - currentPage * 5;
+        const indexInPage = actualIndex - currentPage * 5;
         if (indexInPage > lastAnsweredIndex && indexInPage < 4) {
             setLastAnsweredIndex(indexInPage);
 
