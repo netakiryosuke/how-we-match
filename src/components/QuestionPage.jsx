@@ -46,6 +46,7 @@ export default function QuestionPage() {
             return;
         }
 
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setCurrentPage(currentPage + 1);
     }
 
