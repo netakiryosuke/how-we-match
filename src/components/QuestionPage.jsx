@@ -6,6 +6,7 @@ import calculateScore from "../scoreCalculator";
 import { motion, AnimatePresence } from "framer-motion";
 import ProgressHeader from "./ProgressHeader";
 import questions from "../questions";
+import NextQuestionsButton from "./NextQuestionsButton";
 
 export default function QuestionPage() {
     const [answers, setAnswers] = useState(Array(questions.length).fill(null));
@@ -83,7 +84,7 @@ export default function QuestionPage() {
                                     />
                                 );
                             })}
-                            <Button onClick={handleNextClick}>次へ→</Button>
+                            <NextQuestionsButton onNext={handleNextClick} />
                             <Button onClick={() => setIsShowResult(true)}>計算</Button>
                         </Box>
                     )}
