@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import Question from "./Question";
-import Result from "./Result";
 import { useRef, useState } from "react";
 import calculateScore from "../scoreCalculator";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 export default function QuestionPage() {
     const [answers, setAnswers] = useState(Array(questions.length).fill(null));
     const [currentPage, setCurrentPage] = useState(0);
-    const [isShowResult, setIsShowResult] = useState(false);
     const [lastAnsweredIndex, setLastAnsweredIndex] = useState(-1);
 
     const questionsRefs = useRef([]);
