@@ -12,6 +12,7 @@ export default function NextQuestionsButton({ onClick }) {
                 borderRadius: "40px",
                 backgroundColor: "#88619a",
                 borderColor: "#88619a",
+                margin: "60px 20px",
                 ":hover": {
                     opacity: 0.8
                 }
