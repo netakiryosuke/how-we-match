@@ -1,7 +1,7 @@
 how-we-match
 ========================================
 
-This app lets you find out how compatible you are with @netakiryosuke (the developer) by answering a few questions.
+This app lets you find out **how compatible you are with @netakiryosuke (the developer)** by answering a few questions.
 
 Runs entirely on the frontend, so you only need a modern browser.
 
