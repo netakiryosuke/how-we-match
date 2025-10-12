@@ -1,5 +1,6 @@
 how-we-match
 ========================================
+🗾Japanese: [りーどみー.md](りーどみー.md)
 
 This app lets you find out **how compatible you are with @netakiryosuke (the developer)** by answering a few questions.
 
