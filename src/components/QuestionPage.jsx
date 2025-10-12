@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ProgressHeader from "./ProgressHeader";
 import questions from "../questions";
 import NextQuestionsButton from "./NextQuestionsButton";
+import ShowResultButton from "./ShowResultButton";
 
 export default function QuestionPage() {
     const [answers, setAnswers] = useState(Array(questions.length).fill(null));
@@ -84,12 +85,15 @@ export default function QuestionPage() {
                                     />
                                 );
                             })}
-                            <NextQuestionsButton onClick={handleNextClick} />
-                            <Button onClick={() => setIsShowResult(true)}>計算</Button>
                         </Box>
                     )}
                 </motion.div>
             </AnimatePresence>
+            {currentPage === 3 ? (
+                <ShowResultButton onClick={() => setIsShowResult(true)}/>
+            ) : (
+                <NextQuestionsButton onClick={handleNextClick} />
+            )}
         </Box>
     );
 }
