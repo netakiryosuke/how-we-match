@@ -1,11 +1,12 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import QuestionPage from './components/QuestionPage';
+import AnimatedRoutes from './components/AnimatedRoutes';
 
 function App() {
   return (
-    <div className="App">
-      <QuestionPage />
-    </div>
+    <BrowserRouter>
+      <AnimatedRoutes />
+    </BrowserRouter>
   );
 }
 
