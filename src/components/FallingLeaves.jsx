@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function FallingLeaves({ imageSrc, count = 20 }) {
+export default function FallingLeaves({ imageSrc, count }) {
     useEffect(() => {
         const container = document.createElement("div");
         container.style.position = "fixed";
