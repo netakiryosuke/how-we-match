@@ -4,56 +4,53 @@ import { Box } from "@mui/material";
 import FallingLeaves from "./FallingLeaves";
 
 export default function Result() {
-  const location = useLocation();
-  const { score } = location.state || {};
+    const location = useLocation();
+    const { score } = location.state || {};
 
-  return (
-    <Box
-      sx={{
-        position: "fixed", // ← relative ではなく fixed！
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        overflow: "hidden",
-        margin: 0,
-        padding: 0,
-      }}
-    >
-      {/* 背景に落ち葉 */}
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 0,
-          pointerEvents: "none",
-        }}
-      >
-        <FallingLeaves key={score ?? "no-score"} imageSrc="/leaf.png" count={30} />
-      </Box>
-
-      {/* 中央テキスト */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          textAlign: "center",
-          color: "#222",
-          zIndex: 1,
-          width: "100%",
-        }}
-      >
-        {score ? (
-          <>
-            <h2>netakiryosukeとの相性一致度 {score}％</h2>
-            <h5>一言：{getResultMessage(score)}</h5>
-          </>
-        ) : (
-          <h2>質問に答えず、どのように相性を確かめましょうか？</h2>
-        )}
-      </Box>
-    </Box>
-  );
+    return (
+        <Box
+            sx={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "100vh",
+                overflow: "hidden",
+                margin: 0,
+                padding: 0,
+            }}
+        >
+            <Box
+                sx={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 0,
+                    pointerEvents: "none",
+                }}
+            >
+                <FallingLeaves key={score ?? "no-score"} imageSrc="/leaf.png" count={30} />
+            </Box>
+            <Box
+                sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    textAlign: "center",
+                    color: "#222",
+                    zIndex: 1,
+                    width: "100%",
+                }}
+            >
+                {score ? (
+                    <>
+                        <h2>netakiryosukeとの相性一致度 {score}％</h2>
+                        <h5>一言：{getResultMessage(score)}</h5>
+                    </>
+                ) : (
+                    <h2>質問に答えず、どのように相性を確かめましょうか？</h2>
+                )}
+            </Box>
+        </Box>
+    );
 }
