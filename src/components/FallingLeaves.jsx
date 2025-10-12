@@ -33,7 +33,9 @@ export default function FallingLeaves({ imageSrc, count }) {
 
             leaf.animate(
                 [
-                    { transform: `translateY(0) rotate(0deg)` },
+                    {
+                        transform: `translateY(0) rotate(0deg)`
+                    },
                     {
                         transform: `translateY(100vh) rotate(${spin}deg)`,
                     },
