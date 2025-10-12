@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Question from "./Question";
 import { useRef, useState } from "react";
-import calculateScore from "../scoreCalculator";
+import calculateScore from "../calculateScore";
 import { motion, AnimatePresence } from "framer-motion";
 import ProgressHeader from "./ProgressHeader";
 import questions from "../questions";
