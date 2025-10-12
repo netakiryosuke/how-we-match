@@ -52,6 +52,18 @@ export default function QuestionPage() {
         setLastAnsweredIndex(-1);
     }
 
+    const handleShowResultClick = () => {
+        // 今表示されている質問が全て回答されているか確認
+        const isAllAnswered = displayingQuestions.every((_, index) => answers[index + (currentPage * 5)] !== null);
+
+        if (!isAllAnswered) {
+            alert("全ての質問に回答してください");
+            return;
+        }
+
+        navigate("/result", { state: { score: calculateScore(answers) } })
+    }
+
     return (
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: 10, mb: 5 }}>
             <ProgressHeader
@@ -87,7 +99,7 @@ export default function QuestionPage() {
                 </motion.div>
             </AnimatePresence>
             {currentPage === 3 ? (
-                <ShowResultButton onClick={() => navigate("/result", { state: { score: calculateScore(answers) } })} />
+                <ShowResultButton onClick={handleShowResultClick} />
             ) : (
                 <NextQuestionsButton onClick={handleNextClick} />
             )}
