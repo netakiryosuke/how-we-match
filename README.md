@@ -1,16 +1,50 @@
-# React + Vite
+how-we-match
+========================================
+🗾Japanese: [りーどみー.md](りーどみー.md)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This app lets you find out **how compatible you are with @netakiryosuke (the developer)** by answering a few questions.
 
-Currently, two official plugins are available:
+Runs entirely on the frontend, so you only need a modern browser.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+Development Environment
+----------------------------------------
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This app was developed with:
 
-## Expanding the ESLint configuration
+- Node.js v22.20.0
+- npm v10.9.3
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Clone the repository
+----------------------------------------
+
+```bash
+git clone https://github.com/netakiryosuke/how-we-match.git
+cd how-we-match
+```
+
+Install dependencies
+----------------------------------------
+
+```bash
+npm install
+```
+
+Run development server
+----------------------------------------
+
+```bash
+npm run dev
+```
+
+* http://localhost:5173/
+
+Build
+----------------------------------------
+
+```bash
+npm run build
+```
+
+Static files will be generated in the `dist` folder.  
+You can deploy this folder to any web server to serve the app.
