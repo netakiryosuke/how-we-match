@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import Question from "./Question";
 import Result from "./Result";
 import { useRef, useState } from "react";
@@ -52,7 +52,7 @@ export default function QuestionPage() {
     }
 
     return (
-        <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", mt: 10, mb: 5}}>
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: 10, mb: 5 }}>
             <ProgressHeader
                 isPage1={currentPage === 0}
                 answeredQuestion={answers.filter((answer) => answer !== null).length}
@@ -90,7 +90,7 @@ export default function QuestionPage() {
                 </motion.div>
             </AnimatePresence>
             {currentPage === 3 ? (
-                <ShowResultButton onClick={() => setIsShowResult(true)}/>
+                <ShowResultButton onClick={() => setIsShowResult(true)} />
             ) : (
                 <NextQuestionsButton onClick={handleNextClick} />
             )}
