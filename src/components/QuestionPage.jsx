@@ -8,6 +8,7 @@ import ProgressHeader from "./ProgressHeader";
 import questions from "../questions";
 import NextQuestionsButton from "./NextQuestionsButton";
 import ShowResultButton from "./ShowResultButton";
+import { useNavigate } from "react-router-dom";
 
 export default function QuestionPage() {
     const [answers, setAnswers] = useState(Array(questions.length).fill(null));
@@ -16,6 +17,8 @@ export default function QuestionPage() {
     const [lastAnsweredIndex, setLastAnsweredIndex] = useState(-1);
 
     const questionsRefs = useRef([]);
+
+    const navigate = useNavigate();
 
     const displayingQuestions = questions.slice(0 + (currentPage * 5), 5 + (currentPage * 5));
 
@@ -66,31 +69,27 @@ export default function QuestionPage() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    {isShowResult ? (
-                        <Result score={calculateScore(answers)} />
-                    ) : (
-                        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-                            {displayingQuestions.map((question, index) => {
-                                // 全部の質問に対するインデックス
-                                const actualIndex = index + currentPage * 5;
+                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+                        {displayingQuestions.map((question, index) => {
+                            // 全部の質問に対するインデックス
+                            const actualIndex = index + currentPage * 5;
 
-                                return (
-                                    <Question
-                                        key={index}
-                                        refs={element => questionsRefs.current[index] = element}
-                                        question={question}
-                                        dimmed={index !== lastAnsweredIndex + 1}
-                                        selectedIndex={answers[actualIndex]}
-                                        onSelect={(answer) => handleSelect(answer, actualIndex)}
-                                    />
-                                );
-                            })}
-                        </Box>
-                    )}
+                            return (
+                                <Question
+                                    key={index}
+                                    refs={element => questionsRefs.current[index] = element}
+                                    question={question}
+                                    dimmed={index !== lastAnsweredIndex + 1}
+                                    selectedIndex={answers[actualIndex]}
+                                    onSelect={(answer) => handleSelect(answer, actualIndex)}
+                                />
+                            );
+                        })}
+                    </Box>
                 </motion.div>
             </AnimatePresence>
             {currentPage === 3 ? (
-                <ShowResultButton onClick={() => setIsShowResult(true)} />
+                <ShowResultButton onClick={() => navigate("/result", { state: { score: calculateScore(answers) } })} />
             ) : (
                 <NextQuestionsButton onClick={handleNextClick} />
             )}
