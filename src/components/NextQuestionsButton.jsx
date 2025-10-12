@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 
-export default function NextQuestionsButton({ onNext }) {
+export default function NextQuestionsButton({ onClick }) {
     return (
         <Button
-            onClick={onNext}
+            onClick={onClick}
             sx={{
                 width: "120px",
                 height: "50px",

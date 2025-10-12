@@ -84,7 +84,7 @@ export default function QuestionPage() {
                                     />
                                 );
                             })}
-                            <NextQuestionsButton onNext={handleNextClick} />
+                            <NextQuestionsButton onClick={handleNextClick} />
                             <Button onClick={() => setIsShowResult(true)}>計算</Button>
                         </Box>
                     )}
