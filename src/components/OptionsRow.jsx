@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import CircleOption from "./CircleOption/CircleOption";
+import CircleOption from "./CircleOption";
 
 export default function OptionsRow({ selectedIndex, onSelect }) {
 
