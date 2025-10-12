@@ -5,5 +5,5 @@ export default function calculateScore(answers) {
     
     const score = normalizedAnswers.reduce((sum, normalizedAnswer) => sum + normalizedAnswer, 0);
 
-    return Math.ceil(((score + 55.8) / 111.6 ) * 100);
+    return Math.ceil(((score + 55.8) / 111.6 ) * 100) + 20;
 }
