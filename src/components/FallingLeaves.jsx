@@ -38,7 +38,7 @@ export default function FallingLeaves({ imageSrc, count }) {
                     },
                     {
                         transform: `translateY(calc(100vh + 400px)) rotate(${spin}deg)`,
-                    },
+                    }
                 ],
                 {
                     duration: fallDuration,
