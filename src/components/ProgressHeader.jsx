@@ -20,7 +20,18 @@ export default function ProgressHeader({ isPage1, answeredQuestion, totalQuestio
             <Tooltip title="最初にした回答が一番自分を表していると思いますよ。" arrow>
                 <Button onClick={() => console.log("If you wanna go back, just reload the page. Or... you could make that feature yourself and send me a PR.")} disabled={isPage1}>←前の質問に戻る</Button>
             </Tooltip>
-            <LinearProgress variant="determinate" value={progress} sx={{ width: "80vw", height: 8, borderRadius: 5 }} />
+            <LinearProgress
+                variant="determinate"
+                value={progress}
+                sx={{
+                    width: "80vw",
+                    height: 8,
+                    borderRadius: 5,
+                    "& .MuiLinearProgress-bar": {
+                        backgroundColor: "#4298B4",
+                    },
+                    backgroundColor: "#eee"
+                }} />
         </Paper>
     );
 }
