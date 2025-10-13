@@ -48,7 +48,10 @@ export default function Result() {
                         <h5>一言：{getResultMessage(score)}</h5>
                     </>
                 ) : (
-                    <h2>質問に答えず、どのように相性を確かめましょうか？</h2>
+                    <>
+                        <h2>netakiryosukeとの相性一致度 -100％</h2>
+                        <h5>一言：質問に答えず相性が分かるならこんなアプリ作っていませんね。</h5>
+                    </>
                 )}
             </Box>
         </Box>
