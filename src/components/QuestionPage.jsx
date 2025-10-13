@@ -43,7 +43,7 @@ export default function QuestionPage() {
         const isAllAnswered = displayingQuestions.every((_, index) => answers[index + (currentPage * 5)] !== null);
 
         if (!isAllAnswered) {
-            alert("全ての質問に回答してください");
+            alert("全ての質問に回答してください。");
             return;
         }
 
@@ -57,7 +57,7 @@ export default function QuestionPage() {
         const isAllAnswered = displayingQuestions.every((_, index) => answers[index + (currentPage * 5)] !== null);
 
         if (!isAllAnswered) {
-            alert("全ての質問に回答してください");
+            alert("全ての質問に回答してください。（早く結果を見たい気持ちはわかりますが）");
             return;
         }
 
