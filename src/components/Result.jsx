@@ -28,7 +28,7 @@ export default function Result() {
                     pointerEvents: "none",
                 }}
             >
-                <FallingLeaves key={score ?? "no-score"} imageSrc="/leaf.png" count={30} />
+                <FallingLeaves key={score ?? "no-score"} imageSrc="/how-we-match/leaf.png" count={30} />
             </Box>
             <Box
                 sx={{
