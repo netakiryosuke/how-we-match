@@ -28,7 +28,27 @@ export default function Result() {
                     pointerEvents: "none",
                 }}
             >
-                <FallingLeaves key={score ?? "no-score"} imageSrc="/how-we-match/leaf.png" count={30} />
+                <FallingLeaves key={score ?? "no-score"} imageSrc="/how-we-match/leaf.png" count={25} />
+            </Box>
+            <Box
+                sx={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 0,
+                    pointerEvents: "none",
+                }}
+            >
+                <FallingLeaves key={score ?? "no-score"} imageSrc="/how-we-match/leaf2.png" count={10} />
+            </Box>
+            <Box
+                sx={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 0,
+                    pointerEvents: "none",
+                }}
+            >
+                <FallingLeaves key={score ?? "no-score"} imageSrc="/how-we-match/leaf3.png" count={15} />
             </Box>
             <Box
                 sx={{
