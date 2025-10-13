@@ -16,7 +16,7 @@ export default function TopPage() {
                     fontSize: "16px",
                     color: "white",
                     borderRadius: "40px",
-                    backgroundColor: "#158bb9ff",
+                    backgroundColor: "#4298B4",
                     borderColor: "#88619a",
                     margin: "30px",
                     ":hover": {
