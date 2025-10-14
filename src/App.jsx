@@ -1,4 +1,4 @@
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import AnimatedRoutes from './components/AnimatedRoutes';
 import { useEffect } from 'react';
@@ -14,9 +14,9 @@ function App() {
   }, []);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <AnimatedRoutes />
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
