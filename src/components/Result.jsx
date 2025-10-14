@@ -28,7 +28,7 @@ export default function Result() {
                     pointerEvents: "none",
                 }}
             >
-                <FallingLeaves key={score ?? "no-score"} imageSrc="/how-we-match/leaf.png" count={25} />
+                <FallingLeaves key={score ?? "no-score"} imageSrc="/leaf.png" count={25} />
             </Box>
             <Box
                 sx={{
@@ -38,7 +38,7 @@ export default function Result() {
                     pointerEvents: "none",
                 }}
             >
-                <FallingLeaves key={score ?? "no-score"} imageSrc="/how-we-match/leaf2.png" count={10} />
+                <FallingLeaves key={score ?? "no-score"} imageSrc="/leaf2.png" count={10} />
             </Box>
             <Box
                 sx={{
@@ -48,7 +48,7 @@ export default function Result() {
                     pointerEvents: "none",
                 }}
             >
-                <FallingLeaves key={score ?? "no-score"} imageSrc="/how-we-match/leaf3.png" count={15} />
+                <FallingLeaves key={score ?? "no-score"} imageSrc="/leaf3.png" count={15} />
             </Box>
             <Box
                 sx={{
