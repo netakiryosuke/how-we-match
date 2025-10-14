@@ -1,8 +1,10 @@
-how-we-match
-========================================
 🗾Japanese: [りーどみー.md](りーどみー.md)
 
-This app lets you find out **how compatible you are with @netakiryosuke (the developer)** by answering a few questions.
+how-we-match
+========================================
+Try it online: [how-we-match](https://how-we-match.vercel.app/)
+
+This app lets you find out **how compatible you are with [@netakiryosuke](https://github.com/netakiryosuke) (the developer)** by answering a few questions.
 
 Runs entirely on the frontend, so you only need a modern browser.
 
