@@ -18,7 +18,7 @@ export default function Result() {
                 overflow: "hidden",
                 margin: 0,
                 padding: 0,
-                background: "linear-gradient(180deg, #ffcc70 20%, #c85000 90%, #451a00 120%)"
+                background: "linear-gradient(180deg, #ffcc70 70%, #c85000 100%, #451a00 150%)"
             }}
         >
             <Box
@@ -59,7 +59,7 @@ export default function Result() {
                     transform: "translate(-50%, -50%)",
                     textAlign: "center",
                     color: "black",
-                    textShadow: "0 0 8px rgba(0,0,0,0.4)",
+                    textShadow: "0 0 8px rgba(0,0,0,0.2)",
                     zIndex: 1,
                     width: "100%",
                 }}
