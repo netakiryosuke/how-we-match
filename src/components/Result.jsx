@@ -59,6 +59,7 @@ export default function Result() {
                     transform: "translate(-50%, -50%)",
                     textAlign: "center",
                     color: "black",
+                    textShadow: "0 0 8px rgba(0,0,0,0.4)",
                     zIndex: 1,
                     width: "100%",
                 }}
