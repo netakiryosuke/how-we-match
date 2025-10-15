@@ -58,7 +58,7 @@ export default function Result() {
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                     textAlign: "center",
-                    color: "#222",
+                    color: "black",
                     zIndex: 1,
                     width: "100%",
                 }}
