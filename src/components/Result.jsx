@@ -18,7 +18,7 @@ export default function Result() {
                 overflow: "hidden",
                 margin: 0,
                 padding: 0,
-                background: "linear-gradient(180deg, #ffcc70 10%, #c85000 80%, #451a00 100%)"
+                background: "linear-gradient(180deg, #ffcc70 20%, #c85000 90%, #451a00 120%)"
             }}
         >
             <Box
