@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import OptionsRow from "./OptionsRow";
 
 export default function Question({ refs, question, dimmed, selectedIndex, onSelect }) {
@@ -8,6 +8,13 @@ export default function Question({ refs, question, dimmed, selectedIndex, onSele
                 {question}
             </Typography>
             <OptionsRow selectedIndex={selectedIndex} onSelect={onSelect} />
+            <Divider
+                sx={{
+                    width: "100%",
+                    borderColor: "grey.300",
+                    my: 3
+                }}
+            />
         </Box>
     )
 }
