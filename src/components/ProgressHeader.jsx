@@ -18,7 +18,12 @@ export default function ProgressHeader({ isPage1, answeredQuestion, totalQuestio
                 pl: "4vw",
             }}>
             <Tooltip title="最初にした回答が一番自分を表していると思いますよ。" arrow>
-                <Button onClick={() => console.log("If you wanna go back, just reload the page. Or... you could make that feature yourself and send me a PR.")} disabled={isPage1}>←前の質問に戻る</Button>
+                <Button
+                    onClick={() => console.log("If you wanna go back, just reload the page. Or... you could make that feature yourself and send me a PR.")}
+                    disabled={isPage1}
+                >
+                    ←前の質問に戻る
+                </Button>
             </Tooltip>
             <LinearProgress
                 variant="determinate"

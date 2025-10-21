@@ -1,71 +1,46 @@
 import { Box } from "@mui/material";
-import Question from "./Question";
-import { useRef, useState } from "react";
-import calculateScore from "../calculateScore";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import Question from "./Question";
+import calculateScore from "../utils/calculateScore";
 import ProgressHeader from "./ProgressHeader";
-import questions from "../questions";
+import questions from "../data/questions";
 import NextQuestionsButton from "./NextQuestionsButton";
 import ShowResultButton from "./ShowResultButton";
-import { useNavigate } from "react-router-dom";
+import useQuestionFlow from "../hooks/useQuestionFlow";
 
 export default function QuestionPage() {
-    const [answers, setAnswers] = useState(Array(questions.length).fill(null));
-    const [currentPage, setCurrentPage] = useState(0);
-    const [lastAnsweredIndex, setLastAnsweredIndex] = useState(-1);
-
-    const questionsRefs = useRef([]);
+    const {
+        answers,
+        currentPage,
+        displayingQuestions,
+        questionsRefs,
+        lastAnsweredIndex,
+        handleSelect,
+        isAllAnswered,
+        goToNextPage,
+    } = useQuestionFlow();
 
     const navigate = useNavigate();
 
-    const displayingQuestions = questions.slice(0 + (currentPage * 5), 5 + (currentPage * 5));
-
-    const handleSelect = (answer, actualIndex) => {
-        const newAnswers = [...answers];
-        newAnswers[actualIndex] = answer;
-        setAnswers(newAnswers);
-
-        const indexInPage = actualIndex - currentPage * 5;
-        if (indexInPage > lastAnsweredIndex && indexInPage < 4) {
-            setLastAnsweredIndex(indexInPage);
-
-            // 少し下にスクロール（次の質問が見えるように）
-            const nextIndex = indexInPage + 1;
-            const nextQuestion = questionsRefs.current[nextIndex];
-            if (nextQuestion) {
-                nextQuestion.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-        }
-    }
-
-    const handleNextClick = () => {
-        // 今表示されている質問が全て回答されているか確認
-        const isAllAnswered = displayingQuestions.every((_, index) => answers[index + (currentPage * 5)] !== null);
-
-        if (!isAllAnswered) {
-            alert("全ての質問に回答してください。");
-            return;
-        }
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setCurrentPage(currentPage + 1);
-        setLastAnsweredIndex(-1);
-    }
-
     const handleShowResultClick = () => {
-        // 今表示されている質問が全て回答されているか確認
-        const isAllAnswered = displayingQuestions.every((_, index) => answers[index + (currentPage * 5)] !== null);
-
         if (!isAllAnswered) {
             alert("全ての質問に回答してください。（早く結果を見たい気持ちはわかりますが）");
             return;
         }
 
-        navigate("/result", { state: { score: calculateScore(answers) } })
+        navigate("/result", { state: { score: calculateScore(answers) } });
     }
 
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: 10, mb: 5 }}>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                mt: 10,
+                mb: 5
+            }}>
             <ProgressHeader
                 isPage1={currentPage === 0}
                 answeredQuestion={answers.filter((answer) => answer !== null).length}
@@ -79,7 +54,12 @@ export default function QuestionPage() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+                    <Box sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: 6
+                    }}>
                         {displayingQuestions.map((question, index) => {
                             // 全部の質問に対するインデックス
                             const actualIndex = index + currentPage * 5;
@@ -101,7 +81,7 @@ export default function QuestionPage() {
             {currentPage === 3 ? (
                 <ShowResultButton onClick={handleShowResultClick} />
             ) : (
-                <NextQuestionsButton onClick={handleNextClick} />
+                <NextQuestionsButton onClick={goToNextPage} />
             )}
         </Box>
     );

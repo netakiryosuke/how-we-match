@@ -14,7 +14,13 @@ export default function OptionsRow({ selectedIndex, onSelect }) {
     ];
 
     return (
-        <Box sx={{ display: "flex", gap: 5, justifyContent: "center", alignItems: "center" }}>
+        <Box
+            sx={{
+                display: "flex",
+                gap: 5,
+                justifyContent: "center",
+                alignItems: "center"
+            }}>
             <Typography variant="h6" color="#33a474">そう思う</Typography>
             {circleConfigs.map((config, index) => (
                 <CircleOption

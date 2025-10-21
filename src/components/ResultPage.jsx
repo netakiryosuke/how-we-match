@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
-import getResultMessage from "../getResultMessage";
+import getResultMessage from "../utils/getResultMessage";
 import { Box } from "@mui/material";
 import FallingLeaves from "./FallingLeaves";
 
-export default function Result() {
+export default function ResultPage() {
     const location = useLocation();
     const { score } = location.state || {};
 
