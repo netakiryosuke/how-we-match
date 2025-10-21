@@ -1,8 +1,8 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import QuestionPage from "./QuestionPage";
-import Result from "./Result";
 import { AnimatePresence, motion } from "framer-motion";
 import TopPage from "./TopPage";
+import QuestionPage from "./QuestionPage";
+import ResultPage from "./ResultPage";
 
 export default function AnimatedRoutes() {
     const location = useLocation();
@@ -45,7 +45,7 @@ export default function AnimatedRoutes() {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 2 }}
                         >
-                            <Result />
+                            <ResultPage />
                         </motion.div>
                     }
                 />

@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import Question from "./Question";
 import calculateScore from "../utils/calculateScore";
-import { motion, AnimatePresence } from "framer-motion";
 import ProgressHeader from "./ProgressHeader";
 import questions from "../data/questions";
 import NextQuestionsButton from "./NextQuestionsButton";
 import ShowResultButton from "./ShowResultButton";
-import { useNavigate } from "react-router-dom";
 import useQuestionFlow from "../hooks/useQuestionFlow";
 
 export default function QuestionPage() {
