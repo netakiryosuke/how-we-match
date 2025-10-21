@@ -50,3 +50,8 @@ npm run build
 
 Static files will be generated in the `dist` folder.  
 You can deploy this folder to any web server to serve the app.
+
+Design inspiration
+----------------------------------------
+
+The UI and flow were inspired by [16Personalities](https://www.16personalities.com/free-personality-test).
