@@ -29,11 +29,18 @@ export default function QuestionPage() {
             return;
         }
 
-        navigate("/result", { state: { score: calculateScore(answers) } })
+        navigate("/result", { state: { score: calculateScore(answers) } });
     }
 
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: 10, mb: 5 }}>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                mt: 10,
+                mb: 5
+            }}>
             <ProgressHeader
                 isPage1={currentPage === 0}
                 answeredQuestion={answers.filter((answer) => answer !== null).length}
@@ -47,7 +54,12 @@ export default function QuestionPage() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+                    <Box sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: 6
+                    }}>
                         {displayingQuestions.map((question, index) => {
                             // 全部の質問に対するインデックス
                             const actualIndex = index + currentPage * 5;

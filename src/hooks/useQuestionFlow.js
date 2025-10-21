@@ -15,6 +15,7 @@ export default function useQuestionFlow() {
     setAnswers(newAnswers);
 
     const indexInPage = actualIndex - currentPage * 5;
+    
     if (indexInPage > lastAnsweredIndex && indexInPage < 4) {
       setLastAnsweredIndex(indexInPage);
 
