@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import questions from "./questions";
+import questions from "../data/questions";
 
 export default function useQuestionFlow() {
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
