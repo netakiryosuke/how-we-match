@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import getResultMessage from "../utils/getResultMessage";
 import { Box } from "@mui/material";
-import FallingLeaves from "./FallingLeaves";
+import FallingLeaves from "../components/FallingLeaves";
 
 export default function ResultPage() {
     const location = useLocation();
