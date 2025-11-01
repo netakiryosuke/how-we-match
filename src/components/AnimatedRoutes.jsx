@@ -1,8 +1,8 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import TopPage from "./TopPage";
-import QuestionPage from "./QuestionPage";
-import ResultPage from "./ResultPage";
+import TopPage from "../pages/TopPage";
+import QuestionPage from "../pages/QuestionPage";
+import ResultPage from "../pages/ResultPage";
 
 export default function AnimatedRoutes() {
     const location = useLocation();
