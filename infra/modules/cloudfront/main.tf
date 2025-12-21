@@ -133,6 +133,8 @@ resource "aws_cloudfront_distribution" "main" {
     }
   }
 
+  price_class = "PriceClass_200"
+
   # Optional: geo restriction is disabled. Set to "whitelist" and populate variable to restrict by country codes
   restrictions {
     geo_restriction {
