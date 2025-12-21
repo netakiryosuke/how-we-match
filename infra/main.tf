@@ -10,6 +10,11 @@ module "vpc" {
 module "cloudfront" {
   source = "./modules/cloudfront"
 
+  providers = {
+    aws         = aws
+    aws.useast1 = aws.useast1
+  }
+
   bucket_name = "${var.project}-bucket"
   domain_name = var.domain_name
   oac_name    = "${var.project}-oac"
