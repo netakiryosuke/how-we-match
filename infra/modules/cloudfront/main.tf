@@ -102,9 +102,7 @@ resource "aws_cloudfront_distribution" "main" {
 
     target_origin_id = var.origin_id
 
-    # Optional: allow HTTP for now (change to "redirect-to-https" when ALB listens on 443)
-    viewer_protocol_policy = "allow-all"
-    # viewer_protocol_policy = var.viewer_protocol_policy # default: "redirect-to-https"
+    viewer_protocol_policy = var.viewer_protocol_policy # default: "redirect-to-https"
 
     min_ttl     = var.min_ttl
     default_ttl = var.default_ttl
