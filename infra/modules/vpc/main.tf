@@ -7,23 +7,9 @@ data "aws_vpc" "main" {
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/4.1.0/docs/data-sources/subnets
-data "aws_subnets" "main_pub" {
+data "aws_subnets" "main" {
   filter {
     name   = "subnet-id"
-    values = var.subnet_pub_ids
-  }
-}
-
-data "aws_subnets" "main_pro" {
-  filter {
-    name   = "subnet-id"
-    values = var.subnet_pro_ids
-  }
-}
-
-data "aws_subnets" "main_pri" {
-  filter {
-    name   = "subnet-id"
-    values = var.subnet_pri_ids
+    values = var.subnet_ids
   }
 }
