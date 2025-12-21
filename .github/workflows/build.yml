@@ -1,0 +1,79 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "./**"
+      - ".github/workflows/build.yml"
+  pull_request:
+    branches:
+      - "*"
+    paths:
+      - "./**"
+      - ".github/workflows/build.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js 22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'npm'
+        cache-dependency-path: package-lock.json
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build with npm
+      run: npm run build
+
+    # Optional: skip frontend tests (no test scripts defined yet)
+    # - run: npm test
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: 'Deployment resources'
+        path:
+            ./dist
+
+  deploy: 
+    needs:
+      - build
+
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+
+    environment: Production
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: 'Deployment resources'
+          path: ./dist
+
+      - name: Assume role
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ap-northeast-1
+          role-to-assume: ${{ vars.ASSUME_ROLE_ARN_CICD }}
+          role-session-name: github-actions-how-we-match
+
+      - name: Upload to S3
+        run:
+          aws s3 sync ./dist s3://how-we-match-bucket --delete
