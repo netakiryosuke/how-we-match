@@ -29,19 +29,16 @@ jobs:
       with:
         node-version: 22
         cache: 'npm'
-        cache-dependency-path: ui/package-lock.json
+        cache-dependency-path: package-lock.json
 
     - name: Install dependencies
       run: npm ci
-      working-directory: ui
 
     - name: Build with npm
       run: npm run build
-      working-directory: ui
 
     # Optional: skip frontend tests (no test scripts defined yet)
     # - run: npm test
-    #   working-directory: ui
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
