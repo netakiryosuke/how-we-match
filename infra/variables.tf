@@ -21,10 +21,6 @@ variable "subnet_ids" {
   type = list(string)
 }
 
-variable "security_group_vpc_id" {
-  type = string
-}
-
 variable "domain_name" {
   type = string
 }
