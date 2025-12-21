@@ -2,7 +2,7 @@
 
 how-we-match
 ========================================
-Try it online: [how-we-match](https://how-we-match.vercel.app/)
+Try it online: [how-we-match](https://netakiryosuke.jp)
 
 This app lets you find out **how compatible you are with [@netakiryosuke](https://github.com/netakiryosuke) (the developer)** by answering a few questions.
 
