@@ -38,6 +38,39 @@ resource "aws_s3_bucket_policy" "main" {
   })
 }
 
+resource "aws_route53_zone" "main" {
+  name = var.domain_name
+}
+
+resource "aws_route53_record" "acm" {
+  for_each = {
+    for dvo in aws_acm_certificate.main.domain_validation_options :
+    dvo.domain_name => {
+      name   = dvo.resource_record_name
+      record = dvo.resource_record_value
+      type   = dvo.resource_record_type
+    }
+  }
+
+  zone_id = aws_route53_zone.main.zone_id
+  name    = each.value.name
+  type    = each.value.type
+  ttl     = 60
+  records = [each.value.record]
+}
+
+resource "aws_acm_certificate" "main" {
+  provider          = aws.useast1
+  domain_name       = var.domain_name
+  validation_method = "DNS"
+}
+
+resource "aws_acm_certificate_validation" "main" {
+  provider                = aws.useast1
+  certificate_arn         = aws_acm_certificate.main.arn
+  validation_record_fqdns = [for r in aws_route53_record.acm : r.fqdn]
+}
+
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_origin_access_control
 resource "aws_cloudfront_origin_access_control" "main" {
   name                              = var.oac_name
@@ -93,6 +126,7 @@ resource "aws_cloudfront_distribution" "main" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn = aws_acm_certificate.main.arn
+    ssl_support_method      = "sni-only"
   }
 }
