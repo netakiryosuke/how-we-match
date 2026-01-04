@@ -18,7 +18,7 @@ export default function TopPage() {
                 variant="h2"
                 sx={{
                     fontFamily: "'Noto Sans JP', sans-serif",
-                    fontSize: "54px",
+                    fontSize: { xs: "28px", sm: "40px", md: "54px" },
                     fontWeight: "bold"
                 }}
             >
@@ -26,7 +26,11 @@ export default function TopPage() {
             </Typography>
             <Typography
                 variant="h6"
-                sx={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                sx={{ 
+                    fontFamily: "'Noto Sans JP', sans-serif",
+                    fontSize: { xs: "16px", sm: "18px", md: "20px" },
+                    px: 2
+                }}
             >
                 あなたとnetakiryosukeの相性を診断します
             </Typography>

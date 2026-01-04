@@ -61,18 +61,41 @@ export default function ResultPage() {
                     color: "black",
                     textShadow: "0 0 8px rgba(0,0,0,0.2)",
                     zIndex: 1,
-                    width: "100%",
+                    width: "90%",
+                    px: { xs: 2, sm: 3 }
                 }}
             >
                 {score ? (
                     <>
-                        <h2>netakiryosukeとの相性一致度 {score}％</h2>
-                        <h5>一言：{getResultMessage(score)}</h5>
+                        <h2 style={{ 
+                            fontSize: 'clamp(20px, 5vw, 32px)',
+                            margin: '0 0 16px 0'
+                        }}>
+                            netakiryosukeとの相性一致度 {score}％
+                        </h2>
+                        <h5 style={{ 
+                            fontSize: 'clamp(14px, 3vw, 20px)',
+                            margin: '0',
+                            fontWeight: 'normal'
+                        }}>
+                            一言：{getResultMessage(score)}
+                        </h5>
                     </>
                 ) : (
                     <>
-                        <h2>netakiryosukeとの相性一致度 -100％</h2>
-                        <h5>一言：質問に答えず相性が分かるならこんなアプリ作っていませんね。</h5>
+                        <h2 style={{ 
+                            fontSize: 'clamp(20px, 5vw, 32px)',
+                            margin: '0 0 16px 0'
+                        }}>
+                            netakiryosukeとの相性一致度 -100％
+                        </h2>
+                        <h5 style={{ 
+                            fontSize: 'clamp(14px, 3vw, 20px)',
+                            margin: '0',
+                            fontWeight: 'normal'
+                        }}>
+                            一言：質問に答えず相性が分かるならこんなアプリ作っていませんね。
+                        </h5>
                     </>
                 )}
             </Box>

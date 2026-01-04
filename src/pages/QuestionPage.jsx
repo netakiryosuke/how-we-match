@@ -38,8 +38,9 @@ export default function QuestionPage() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                mt: 10,
-                mb: 5
+                mt: { xs: 8, sm: 10 },
+                mb: 5,
+                px: { xs: 1, sm: 2 }
             }}>
             <ProgressHeader
                 isPage1={currentPage === 0}
@@ -58,7 +59,8 @@ export default function QuestionPage() {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        gap: 6
+                        gap: 6,
+                        width: "100%"
                     }}>
                         {displayingQuestions.map((question, index) => {
                             // 全部の質問に対するインデックス
