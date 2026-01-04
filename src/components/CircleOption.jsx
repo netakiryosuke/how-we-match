@@ -5,6 +5,13 @@ import { useState } from 'react';
 export default function CircleOption({ size, color, selected, onClick }) {
     const [isHovered, setIsHovered] = useState(false);
 
+    // Create responsive size
+    const responsiveSize = {
+        xs: size * 0.5,  // 50% on mobile
+        sm: size * 0.65, // 65% on small tablets
+        md: size * 0.85, // 85% on tablets
+        lg: size          // 100% on desktop
+    };
 
     return (
         <Box
@@ -15,8 +22,8 @@ export default function CircleOption({ size, color, selected, onClick }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: size,
-                height: size,
+                width: responsiveSize,
+                height: responsiveSize,
                 border: `3px solid ${color}`,
                 borderRadius: "50%",
                 cursor: "pointer",
@@ -24,13 +31,19 @@ export default function CircleOption({ size, color, selected, onClick }) {
                 ":hover": {
                     backgroundColor: color
                 },
-                backgroundColor: selected ? color : "transparent"
+                backgroundColor: selected ? color : "transparent",
+                flexShrink: 0
             }}
         >
             {selected || isHovered ? (
                 <CheckIcon sx={{
                     color: "white",
-                    fontSize: size * 0.6,
+                    fontSize: { 
+                        xs: size * 0.5 * 0.6,
+                        sm: size * 0.65 * 0.6,
+                        md: size * 0.85 * 0.6,
+                        lg: size * 0.6
+                    },
                 }} />
             ) : null}
         </Box>
