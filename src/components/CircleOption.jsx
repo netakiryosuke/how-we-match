@@ -2,15 +2,33 @@ import { Box } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import { useState } from 'react';
 
+// Responsive size multipliers for different breakpoints
+const SIZE_MULTIPLIERS = {
+    xs: 0.5,  // 50% on mobile
+    sm: 0.65, // 65% on small tablets
+    md: 0.85, // 85% on tablets
+    lg: 1.0   // 100% on desktop
+};
+
+const CHECK_ICON_SIZE_RATIO = 0.6;
+
 export default function CircleOption({ size, color, selected, onClick }) {
     const [isHovered, setIsHovered] = useState(false);
 
     // Create responsive size
     const responsiveSize = {
-        xs: size * 0.5,  // 50% on mobile
-        sm: size * 0.65, // 65% on small tablets
-        md: size * 0.85, // 85% on tablets
-        lg: size          // 100% on desktop
+        xs: size * SIZE_MULTIPLIERS.xs,
+        sm: size * SIZE_MULTIPLIERS.sm,
+        md: size * SIZE_MULTIPLIERS.md,
+        lg: size * SIZE_MULTIPLIERS.lg
+    };
+
+    // Create responsive icon size based on circle size
+    const responsiveIconSize = {
+        xs: responsiveSize.xs * CHECK_ICON_SIZE_RATIO,
+        sm: responsiveSize.sm * CHECK_ICON_SIZE_RATIO,
+        md: responsiveSize.md * CHECK_ICON_SIZE_RATIO,
+        lg: responsiveSize.lg * CHECK_ICON_SIZE_RATIO
     };
 
     return (
@@ -38,12 +56,7 @@ export default function CircleOption({ size, color, selected, onClick }) {
             {selected || isHovered ? (
                 <CheckIcon sx={{
                     color: "white",
-                    fontSize: { 
-                        xs: size * 0.5 * 0.6,
-                        sm: size * 0.65 * 0.6,
-                        md: size * 0.85 * 0.6,
-                        lg: size * 0.6
-                    },
+                    fontSize: responsiveIconSize,
                 }} />
             ) : null}
         </Box>
