@@ -44,7 +44,7 @@ export default function CircleOption({ size, color, selected, onClick }) {
                 height: responsiveSize,
                 borderStyle: 'solid',
                 borderColor: color,
-                borderWidth: { xs: '2px', sm: '3px' },
+                borderWidth: { xs: "2px", sm: "3px" },
                 borderRadius: "50%",
                 cursor: "pointer",
                 transition: "all 0.2s ease",
