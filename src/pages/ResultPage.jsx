@@ -3,6 +3,8 @@ import getResultMessage from "../utils/getResultMessage";
 import { Box } from "@mui/material";
 import FallingLeaves from "../components/FallingLeaves";
 
+const assetBase = import.meta.env.BASE_URL;
+
 export default function ResultPage() {
     const location = useLocation();
     const { score } = location.state || {};
@@ -29,7 +31,7 @@ export default function ResultPage() {
                     pointerEvents: "none",
                 }}
             >
-                <FallingLeaves key={score ?? "no-score"} imageSrc="/leaf.png" count={25} />
+                <FallingLeaves key={score ?? "no-score"} imageSrc={`${assetBase}leaf.png`} count={25} />
             </Box>
             <Box
                 sx={{
@@ -39,7 +41,7 @@ export default function ResultPage() {
                     pointerEvents: "none",
                 }}
             >
-                <FallingLeaves key={score ?? "no-score"} imageSrc="/leaf2.png" count={10} />
+                <FallingLeaves key={score ?? "no-score"} imageSrc={`${assetBase}leaf2.png`} count={10} />
             </Box>
             <Box
                 sx={{
@@ -49,7 +51,7 @@ export default function ResultPage() {
                     pointerEvents: "none",
                 }}
             >
-                <FallingLeaves key={score ?? "no-score"} imageSrc="/leaf3.png" count={15} />
+                <FallingLeaves key={score ?? "no-score"} imageSrc={`${assetBase}leaf3.png`} count={15} />
             </Box>
             <Box
                 sx={{

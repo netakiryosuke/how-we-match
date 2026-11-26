@@ -1,79 +1,66 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: Build and deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - "main"
-    paths:
-      - "./**"
-      - ".github/workflows/build.yml"
+      - main
   pull_request:
-    branches:
-      - "*"
-    paths:
-      - "./**"
-      - ".github/workflows/build.yml"
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js 22
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22
-        cache: 'npm'
-        cache-dependency-path: package-lock.json
+      - uses: actions/checkout@v7
+      - name: Use Node.js 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Build with npm
-      run: npm run build
+      - name: Build for GitHub Pages
+        # GitHub Pages serves these HTML files at the existing extensionless routes.
+        run: |
+          npm run build -- --base=/how-we-match/
+          cp dist/index.html dist/question.html
+          cp dist/index.html dist/result.html
 
-    # Optional: skip frontend tests (no test scripts defined yet)
-    # - run: npm test
+      - name: Ensure static output exists
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: test -f dist/index.html
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: 'Deployment resources'
-        path:
-            ./dist
+      - name: Upload GitHub Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
 
-  deploy: 
-    needs:
-      - build
-
-    if: ${{ github.event_name == 'workflow_dispatch' }}
-
-    environment: Production
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
     runs-on: ubuntu-latest
     permissions:
+      pages: write
       id-token: write
-      contents: read
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: 'Deployment resources'
-          path: ./dist
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
 
-      - name: Assume role
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: ap-northeast-1
-          role-to-assume: ${{ vars.ASSUME_ROLE_ARN_CICD }}
-          role-session-name: github-actions-how-we-match
-
-      - name: Upload to S3
-        run:
-          aws s3 sync ./dist s3://how-we-match-bucket --delete
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
